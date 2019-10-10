@@ -23,6 +23,7 @@ class App extends React.Component {
         <TodoItem
           key={todo.id}
           title={todo.title}
+          done={todo.done}
           id={todo.id}
           delete={this.deleteTodo}
         />
