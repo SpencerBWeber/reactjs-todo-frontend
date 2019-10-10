@@ -19,7 +19,14 @@ class App extends React.Component {
 
   renderTodos = () => {
     return this.state.todos.map(todo => {
-      return <TodoItem title={todo.title} />;
+      return (
+        <TodoItem
+          key={todo.id}
+          title={todo.title}
+          id={todo.id}
+          delete={this.deleteTodo}
+        />
+      );
     });
   };
 
@@ -44,6 +51,16 @@ class App extends React.Component {
           todo: ""
         })
       );
+  };
+
+  deleteTodo = id => {
+    fetch(`http://localhost:5000/todo/${id}`, {
+      method: "DELETE"
+    }).then(
+      this.setState({
+        todos: this.state.todos.filter(todo => todo.id !== id)
+      })
+    );
   };
 
   render() {

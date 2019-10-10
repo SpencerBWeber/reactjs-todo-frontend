@@ -17,6 +17,7 @@ class TodoItem extends React.Component {
           onChange={() => this.setState({ done: !this.state.done })}
         />
         <p className={this.state.done && "done"}>{this.props.title}</p>
+        <button onClick={() => this.props.delete(this.props.id)}>X</button>
       </div>
     );
   }
