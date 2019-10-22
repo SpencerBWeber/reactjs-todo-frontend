@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://sbw-todo-list-app.herokuapp.com/todos")
+    fetch("http://localhost:4000/todos")
       .then(response => response.json())
       .then(data => this.setState({ todos: data }));
   }
@@ -21,10 +21,10 @@ class App extends React.Component {
     return this.state.todos.map(todo => {
       return (
         <TodoItem
-          key={todo.id}
+          key={todo._id}
           title={todo.title}
           done={todo.done}
-          id={todo.id}
+          id={todo._id}
           delete={this.deleteTodo}
         />
       );
@@ -37,7 +37,7 @@ class App extends React.Component {
 
   addTodo = event => {
     event.preventDefault();
-    fetch("https://sbw-todo-list-app.herokuapp.com/todo", {
+    fetch("http://localhost:4000/todo", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -55,11 +55,11 @@ class App extends React.Component {
   };
 
   deleteTodo = id => {
-    fetch(`https://sbw-todo-list-app.herokuapp.com/todo/${id}`, {
+    fetch(`http://localhost:4000/todo/${id}`, {
       method: "DELETE"
     }).then(
       this.setState({
-        todos: this.state.todos.filter(todo => todo.id !== id)
+        todos: this.state.todos.filter(todo => todo._id !== id)
       })
     );
   };
