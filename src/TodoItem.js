@@ -10,7 +10,7 @@ class TodoItem extends React.Component {
   }
 
   toggleDone = () => {
-    fetch(`https://todo-app-mongo-db.herokuapp.com/todo/${this.props.id}`, {
+    fetch(`https://todolist-bd7fd.firebaseio.com/todos/${this.props.id}.json`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
