@@ -57,7 +57,8 @@ class App extends React.Component {
           todos: [
             ...this.state.todos,
             { id: data.name, title: this.state.todo, done: false }
-          ]
+          ],
+          todo: ""
         })
       );
   };
